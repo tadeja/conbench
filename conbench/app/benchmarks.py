@@ -657,6 +657,10 @@ def show_benchmark_results(bname: TBenchmarkName, caseid: str) -> str:
             "unit": newest_result.unit,
         }
 
+    # Discard unit=None (failed results) to avoid legacy_convert() below raising
+    # AssertionError on None.
+    units_seen.discard(None)
+
     # For now, only emit a warning in the web application log.
     # TODO: show a user-facing warning on this page.
 
@@ -666,7 +670,7 @@ def show_benchmark_results(bname: TBenchmarkName, caseid: str) -> str:
         )
 
     # Proceed, show a potentially wrong unit.
-    y_unit_for_all_plots = maybe_longer_unit(units_seen.pop())
+    y_unit_for_all_plots = maybe_longer_unit(units_seen.pop()) if units_seen else None
     # log.info("unit: %s", y_unit_for_all_plots)
 
     # Need to find a way to put bytes straight into jinja template.
