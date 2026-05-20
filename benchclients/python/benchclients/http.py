@@ -397,6 +397,11 @@ class RetryingHTTPClient(ABC):
         Do we (want to) consider this response as retryable, based on the
         status code alone?
         """
+        if code == 408:
+            # Proxy Request Timeout — temporary like 5xx, just at a
+            # different stage of the request.
+            return True
+
         if code == 429:
             # Canonical way to signal "back off, retry soon".
             return True
