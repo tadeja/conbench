@@ -164,7 +164,7 @@ def test_get_github_commit_metadata_and_fork_point_sha(branch):
     if not os.getenv("GITHUB_API_TOKEN"):
         pytest.skip("No GITHUB_API_TOKEN given so we won't hit the GitHub API")
 
-    repo = "https://github.com/conbench/conbench"
+    repo = "https://github.com/arctosalliance/conbench"
     sha = "44e81d10f475e9468eaf488dbfe73a0b43d26adc"
 
     expected = {
@@ -174,7 +174,7 @@ def test_get_github_commit_metadata_and_fork_point_sha(branch):
         "author_name": "Austin Dickey",
         "author_login": "austin3dickey",
         "author_avatar": "https://avatars.githubusercontent.com/u/16600275?v=4",
-        "branch": "conbench:main",
+        "branch": "arctosalliance:main",
         # this is the default branch, so the fork point sha == the commit sha
         "fork_point_sha": sha,
     }
