@@ -57,7 +57,7 @@ def main():
     ]
     log.info("start generate_synthetic_benchmark_history(conbench_commits)")
     generate_synthetic_benchmark_history(
-        conbench_commits, "https://github.com/conbench/conbench"
+        conbench_commits, "https://github.com/arctosalliance/conbench"
     )
 
 
