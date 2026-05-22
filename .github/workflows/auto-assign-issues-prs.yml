@@ -53,4 +53,5 @@ jobs:
         run: |
           echo "$RETRIEVED_ISSUE" | \
           jq -c '.. | objects | select(has("edges")) | .edges | .[].node.number' | \
-          xargs -I{} gh api repos/conbench/conbench/issues/{}/assignees -f assignees="${{ github.event.pull_request.user.login }}"
+          xargs -I{} gh api repos/${{ github.repository }}/issues/{}/assignees -f assignees="${{
+            github.event.pull_request.user.login }}"
